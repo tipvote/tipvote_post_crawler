@@ -78,7 +78,6 @@ def crawlposts():
         else:
             thecoinamount = 0
 
-        postrating = rated_comment + rated_downvotes + rated_upvotes + rated_tips + rated_promote + thecoinamount
 
         # get time variable
         now = datetime.utcnow()
@@ -118,6 +117,8 @@ def crawlposts():
             time_depletion_variable = 0
 
         post.decay_rate = time_depletion_variable
+        postrating = rated_comment + rated_downvotes + rated_upvotes +\
+                     rated_tips + rated_promote + thecoinamount
 
         # determine final hotness rating over time
         timedrating = Decimal(postrating) * Decimal(time_depletion_variable)

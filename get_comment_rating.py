@@ -4,9 +4,8 @@ from datetime import datetime
 from datetime import timedelta
 
 # multipliers
-upvote_var = 2
+upvote_var = 1
 downvote_var = 1
-comment_var = 3
 post_tip_var = 25
 
 
