@@ -44,7 +44,7 @@ def crawlposts():
         if getpromote:
             dollars_promotions = getpromote.total_recieved_btc_usd + getpromote.total_recieved_bch_usd + getpromote.total_recieved_xmr_usd
             if dollars_promotions < 1:
-                dollars_promotions = 5
+                dollars_promotions = 1
             else:
                 dollars_promotions = dollars_promotions
         else:
@@ -78,9 +78,9 @@ def crawlposts():
         else:
             thecoinamount = 0
 
-
         # get time variable
         now = datetime.utcnow()
+        half_day_age = datetime.utcnow() - timedelta(hours=12)
         one_day_age = datetime.utcnow() - timedelta(days=1)
         two_day_age = datetime.utcnow() - timedelta(days=2)
         three_day_age = datetime.utcnow() - timedelta(days=3)
@@ -93,14 +93,16 @@ def crawlposts():
         ten_day_age = datetime.utcnow() - timedelta(days=10)
 
         # calculte variable coefficient multiplier
-        if now >= post.created >= one_day_age:
+        if now >= post.created >= half_day_age:
             time_depletion_variable = 1
-        elif one_day_age >= post.created >= two_day_age:
+        elif one_day_age >= post.created >= one_day_age:
             time_depletion_variable = 0.7
+        elif one_day_age >= post.created >= two_day_age:
+            time_depletion_variable = 0.4
         elif two_day_age >= post.created >= three_day_age:
-            time_depletion_variable = 0.5
-        elif three_day_age >= post.created >= four_day_age:
             time_depletion_variable = 0.3
+        elif three_day_age >= post.created >= four_day_age:
+            time_depletion_variable = 0.2
         elif four_day_age >= post.created >= five_day_age:
             time_depletion_variable = 0.05
         elif five_day_age >= post.created >= six_day_age:
