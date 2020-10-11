@@ -6,7 +6,7 @@ from decimal import Decimal
 # multipliers
 upvote_var = 2
 downvote_var = 1
-comment_var = 2
+comment_var = 1
 post_tip_var = 5
 post_promotion_var = 50
 
