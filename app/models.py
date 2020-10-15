@@ -466,7 +466,7 @@ class SubForums(db.Model):
     mods = db.relationship('Mods', backref='mods', lazy='dynamic')
     banned = db.relationship('Banned', backref='banned', lazy='dynamic')
     muted = db.relationship('Muted', backref='muted', lazy='dynamic')
-
+    room_deleted = db.Column(db.Integer)
     subcommon_name = db.Column(db.String(140))
     # date created
     created = db.Column(db.TIMESTAMP(), default=datetime.utcnow)
@@ -624,8 +624,6 @@ class CommonsPost(db.Model):
     shared_time = db.Column(db.TIMESTAMP(), default=datetime.utcnow)
     shared_thoughts = db.Column(db.TEXT)
 
-    def __repr__(self):
-        return '<Post {}>'.format(self.title_of_post)
 
 
 class PostPromotions(db.Model):
@@ -852,7 +850,6 @@ class ReportedPosts(db.Model):
     subcommon_name = db.Column(db.String(140))
 
     post_id = db.Column(db.Integer, db.ForeignKey('avengers_post.avengers_posts_posts.id'))
-    title_of_post = db.Column(db.String(140))
     poster_user_id = db.Column(db.Integer)
     poster_user_name = db.Column(db.String(140))
     poster_visible_user_id = db.Column(db.Integer)
